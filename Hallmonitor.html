@@ -1,0 +1,100 @@
+<!--
+Image citations:
+hall monitor: PublicDomainSymbols  URL:https://openclipart.org/detail/260793/police15
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		
+	
+	
+	
+		function start(){
+			loadinv();
+			balance();
+			monitor();
+		}
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		function loadinv(){
+			if(localStorage.getItem('apple') != null){
+				document.getElementById('apple').innerHTML = "Apples: " + localStorage.getItem("apple");
+			}
+			if(localStorage.getItem('hallpass') != null){
+				document.getElementById('hallpass').innerHTML = "Hallpasses: " + localStorage.getItem("hallpass");
+			}
+			if(localStorage.getItem('soda') != null){
+				document.getElementById('soda').innerHTML = "Sodas: " + localStorage.getItem("soda");
+			}
+		}
+		
+		function monitor(){
+			money = localStorage.getItem("balance");
+			
+			if (localStorage.getItem('hallpass') == null){
+				if(money <= 6){
+					localStorage.setItem("case",1);
+					document.getElementById("monitor").innerHTML = "You don't have a hall pass, and can't pay off the hall monitor. He takes all your money.";
+					money = 0;
+				}else{
+					localStorage.setItem("case",2);
+					document.getElementById("monitor").innerHTML = "You don't have a hall pass.. Pay the Hall Monitor $6 to get by.";
+					money = money - 6;
+				}
+			}else{
+				localStorage.setItem("case",3);
+				document.getElementById("monitor").innerHTML = "The Hall Monitor takes your hall pass and gives you $12.";
+				money = money + 12;
+			}
+			localStorage.setItem("balance",money);
+			balance();
+		}
+		
+		function nextpage(){
+			page = parseInt(localStorage.getItem("case"));
+			switch (page){
+				
+				case 1: 
+					document.location.href = "End.html";
+					break;
+				case 2: 
+					document.location.href = "Classroom.html";
+					break;
+				case 3: 
+					document.location.href = "Classroom.html";
+					break;
+			}
+
+		}
+		
+	</script>
+	
+	
+	
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<div id = 'apple'> </div>
+	<div id = 'hallpass'></div>
+	<div id = 'soda'></div>
+	
+	<h1 id="prompt">
+		<div> You run into the Hall Monitor...</div>
+		<img src ="Hallmonitor.png"  style="width:100px;height:100px;"></img>
+		<div id="monitor" > </div>
+		<button type='button' onclick="nextpage()" style = "width:100px; height: 50;margin:auto;">Click to keep going!</button>
+
+	
+	
+	</h1>
+	
+</body>

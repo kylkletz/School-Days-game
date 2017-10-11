@@ -1,0 +1,57 @@
+<!--
+Image citations
+mob: Karolus_BR  URL:https://openclipart.org/detail/254695/nefarious-man-02
+running: talekids  URL:https://openclipart.org/detail/247555/punk-running
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			balance();
+		}
+
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		function mob(trial){
+			localStorage.setItem("mob",trial);
+			document.location.href = "End.html";
+		}
+		function run(){
+			alert("The mob finds out you tried to run and catches you...");
+			mob(false);
+		}
+		
+	</script>
+</head>
+
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<h2 id = "prompt">
+		<div>
+		You've survived so far in the day,
+		</div>
+		<div>
+		but have you saved enough money 
+		</div>
+		<div>
+		to pay back the Mob?
+		</div>
+		<div>
+			<img src = "mob.png" onclick = "mob(true)" style="width:100px;height:100px;" >Go to face the Mob </img>
+		</div>
+		<div>
+			<img src = "run.png" onclick = "run()" style="width:100px;height:100px;" >Attempt to run away.. </img>
+		</div>
+	
+	</h2>
+</body>

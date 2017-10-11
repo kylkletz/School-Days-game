@@ -1,0 +1,133 @@
+<!--
+Image citations
+Desk image: Author: barnheartowl   URL:  https://openclipart.org/detail/216908/an-empty-desk 
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			clean();
+			balance();
+		}
+		function balance(){
+			if(localStorage.getItem("balance") == true){
+				localStorage.removeItem("balance");
+			}else{
+				localStorage.setItem("balance",15);
+				document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance") ;
+			}
+		}
+		function clean(){
+			localStorage.removeItem('apple');
+			localStorage.removeItem('hallpass');
+			localStorage.removeItem('soda');
+			localStorage.removeItem("note");
+			localStorage.removeItem("difficulty");
+			localStorage.setItem("Buyapple",5);
+			localStorage.setItem("Buyhallpass",1);
+			localStorage.setItem("Buysoda",4);
+		}
+		function difficulty(difficulty){
+			if(difficulty == 'easy'){
+				document.body.style.background='#57B9FA';
+			}else if (difficulty == 'medium'){
+				document.body.style.background='#DC2EFE';
+			}else if (difficulty == 'hard'){
+				document.body.style.background='#FE2E2E';
+			}
+			localStorage.setItem("difficulty",difficulty);
+		}
+		
+		function nextpage(){
+			difficulty = localStorage.getItem("difficulty");
+			balance = parseInt(localStorage.getItem("balance"));
+			if (difficulty == 'easy'){
+				balance = balance +5;
+				alert("You sit down in the front row and find $5 inside your backpack");
+				localStorage.setItem("balance",balance);
+				document.location.href = 'Cafeteria.html';
+			}else if (difficulty == 'medium'){
+				alert("You take your seat and talk to your neighbors.. They are nice.");
+				localStorage.setItem("balance",balance);
+				document.location.href = 'Cafeteria.html';
+			}else if (difficulty == 'hard'){
+				balance = balance - 5;
+				alert("You sit down and the kid next to you harasses you until you pay him $5 to stop.");
+				localStorage.setItem("balance",balance);
+				document.location.href = 'Cafeteria.html';
+			}else{
+				alert("Please select a difficulty");
+				document.location.href = 'Difficulty.html';
+				}
+		}
+
+	</script>
+	
+</head>
+
+
+
+
+<body id="mycolor" onload = "start()">
+	<div id ='balance'></div>
+		<h1 id="prompt"> Where would you like to sit?</h1>
+		<div id = "difficulty"> Difficulty</div>
+		
+			<div> 
+				Easy! (blue)
+				<center>
+			
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('easy')" src="Desk.png" style="width:60;height:auto;" >
+
+				</center>
+			</div>
+			
+			<div>
+				Medium! (purple)
+				<center>
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('medium')" src="Desk.png" style="width:60;height:auto;" >
+				</center>
+			</div>
+			
+			<div>
+				Hard! (red)
+				<center>
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+					<img onclick="difficulty('hard')" src="Desk.png" style="width:60;height:auto;" >
+				</center>
+			</div>				
+			
+			<center>
+				<button type='button' onclick="nextpage()" style = "width:100px; height: 50;margin:auto;">Start the day!</button>
+				
+			</center>
+</body>

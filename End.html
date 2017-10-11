@@ -1,0 +1,62 @@
+<!--
+Image citations
+mob: Karolus_BR  URL:https://openclipart.org/detail/254695/nefarious-man-02
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			mob();
+		}
+		function mob(){
+
+			if(localStorage.getItem("mob") == 'false'){
+				document.getElementById("outcome").innerHTML = "YOU LOSE FOOL!";
+				document.getElementById("fate").innerHTML = "The Mob doesn't appreciate you running away..";
+				document.getElementById("end").innerHTML = "You are used as a bone marrow donor for the next 20 years";
+			}else{
+				if (parseInt(localStorage.getItem("balance")) < 15){
+					document.getElementById("outcome").innerHTML = "YOU LOSE!";
+					document.getElementById("fate").innerHTML = "You failed to repay the mob..";
+					document.getElementById("end").innerHTML = "The mob kidnaps you and sells you into the black market";
+				}else if(parseInt(localStorage.getItem("balance")) < 20){
+					document.getElementById("outcome").innerHTML = "You Keep Your Freedom!";
+					document.getElementById("fate").innerHTML = "You couldn't quite meet the mobs expectations..";
+					document.getElementById("end").innerHTML = "The mob takes your $" + localStorage.getItem("balance") + " and harvests your left kidney..";
+				}else{
+					document.getElementById("outcome").innerHTML = "YOU WIN!";
+					document.getElementById("fate").innerHTML = "You raised $" + localStorage.getItem("balance") + " to pay off your debt" ;
+					document.getElementById("end").innerHTML = "The mob takes your money and gives you their best regards.";
+				}
+			
+			}
+		}
+		
+	</script>
+	
+</head>
+
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<h1 id = "prompt">
+		<div id = 'outcome'> </div>
+		<div id = 'fate'> </div>
+		
+	</h1>
+	<h2 id = "prompt">
+		<div id = "end">
+		</div>
+		<div>
+			<img src = "mob.png" style="width:100px;height:100px;" >You've finished the game!</img>
+		</div>
+	</h2>
+</body>

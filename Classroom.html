@@ -1,0 +1,103 @@
+<!--
+Image citations
+Art image: j4p4n  URL: https://openclipart.org/detail/273175/hand-with-pen
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		
+		function start(){
+			loadinv();
+			events();
+			balance();
+		}
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		function loadinv(){
+			if(localStorage.getItem('apple') != null){
+				document.getElementById('apple').innerHTML = "Apples: " + localStorage.getItem("apple");
+			}else{
+				document.getElementById('apple').innerHTML = "";
+			}
+			if(localStorage.getItem('hallpass') != null){
+				document.getElementById('hallpass').innerHTML = "Hallpasses: " + localStorage.getItem("hallpass");
+			}else{
+				document.getElementById('apple').innerHTML = "";
+			}
+			if(localStorage.getItem('soda') != null){
+				document.getElementById('soda').innerHTML = "Sodas: " + localStorage.getItem("soda");
+			}else{
+				document.getElementById('apple').innerHTML = "";
+			}
+		}
+		function events(){
+			if(localStorage.getItem("balance") <= 3){
+				document.location.href = "End.html";
+			}else{
+				localStorage.setItem("balance",(localStorage.getItem("balance")-3));
+			}
+			if(localStorage.getItem('note') != null && localStorage.getItem('soda') != null){
+				note();
+			}
+			if(localStorage.getItem("apple") != null){
+				apple();
+			}
+
+		}
+		
+		function note(){
+			soda = localStorage.getItem("soda");
+			balance = parseInt(localStorage.getItem("balance"));
+			price = prompt("Your classmate wants to buy your " + soda + " soda(s). How much will you sell them for?");
+			balance = balance + (price*soda);
+			localStorage.setItem("balance",balance); 	
+			localStorage.removeItem("soda");
+			balance();
+		}
+		function apple(){
+			apple = localStorage.getItem("apple");
+			balance = parseInt(localStorage.getItem("balance"));
+			price = prompt("Your teacher wants to buy your " + apple + " apple(s). How much will you sell them for?");
+			
+			localStorage.setItem("balance",(balance +(price*apple))); 	
+			localStorage.removeItem("apple");
+			balance();
+		}
+		
+	
+	</script>
+	
+	
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<div id = 'apple'> </div>
+	<div id = 'hallpass'></div>
+	<div id = 'soda'></div>
+	<h1 id= "prompt">
+		<div>
+			You made it back to class!
+		</div>
+		<div>
+			You forgot your field trip money.. Pay $3
+		</div>
+		<a href = "Art.html"> <img border="0" src="school.png" width="300" height="300"></a> 
+		Continue To Art Class!
+
+	</h1>
+</body>
+	
+	
+	
+	
+	
+	
