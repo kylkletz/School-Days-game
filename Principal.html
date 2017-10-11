@@ -1,0 +1,56 @@
+<!--
+Image citations
+principal: anarres  URL:https://openclipart.org/detail/184839/dapper-gentleman
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			losemoney();
+			balance();
+		}
+
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		function losemoney(){
+			localStorage.setItem("balance", 0);
+		}
+		function nextpage(){
+			document.location.href = "Decisions.html";
+		}
+	</script>
+	
+</head>
+
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<h2 id = "prompt">
+		<div>
+			You arrive at the principal's office and he tells you
+		</div>
+		<div>
+			that if you don't give him all your money
+		</div>
+		<div>
+			he is going to expell you from school
+		</div>
+		<div>
+			Lose all your money...
+		</div>
+		<div>
+			<img src = "principal.png" onclick = "nextpage()" style="width:100px;height:100px;" >Click To Continue... </img>
+		</div>
+		
+	</h2>
+	
+</body>

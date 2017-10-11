@@ -1,0 +1,169 @@
+<!--
+Image citations
+classmate: Sammo241 URL:https://openclipart.org/detail/171795/albert
+teacher: Gerald_G  URL:https://openclipart.org/detail/395/man-in-suit
+lunch lady: oksmith  URL:https://openclipart.org/detail/284221/female-store-clerk
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			loadinv();
+			balance();
+		}
+		function balance(){
+			if(localStorage.getItem("balance") == null){
+				document.location.href = "Start.html";
+				}
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		
+
+		
+		function loadinv(){
+			if(localStorage.getItem('apple') != null){
+				document.getElementById('apple').innerHTML = "Apples: " + localStorage.getItem("apple");
+			}
+			if(localStorage.getItem('hallpass') != null){
+				document.getElementById('hallpass').innerHTML = "Hallpass: " + localStorage.getItem("hallpass");
+			}
+			if(localStorage.getItem('soda') != null){
+				document.getElementById('soda').innerHTML = "Soda: " + localStorage.getItem("soda");
+			}
+		}
+		
+		function classmate(){
+			soda = localStorage.getItem("Buysoda");
+			money = localStorage.getItem("balance");
+			if(soda == 0){
+				alert("Your classmate has run out of sodas");
+			}else{
+				buying = prompt("Your classmate is selling " + soda + " sodas. How many do you want to buy?");
+				if (buying > 0 && buying <= soda){
+					price = prompt("How much would you like to pay for each soda? (Don't lowball to much or you might lose your chance)");
+					if (money > (price*buying)){
+						if(localStorage.soda == null){
+							localStorage.setItem("soda",buying);
+						}else{
+							localStorage.setItem("soda",parseInt(localStorage.soda) + parseInt(buying));
+						}
+						soda = soda - buying;
+						localStorage.setItem("Buysoda",soda);
+						money = money - (price*buying);
+						localStorage.setItem("balance",money );
+						document.getElementById('balance').innerHTML = "Money $" + money;
+						document.getElementById('soda').innerHTML = "Soda: " + localStorage.getItem("soda");
+
+					}
+				}else{
+					alert("Go practice math some more!");
+				}
+				
+			}
+		}
+		
+		function teacher(){
+			hallpass = localStorage.getItem("Buyhallpass");
+			money = localStorage.getItem("balance"); 
+			if(hallpass == 0){
+				alert("Your teacher doesn't have anything left for you.");
+			}else{
+				buying = confirm("Your teacher has " + hallpass + " hallpass for sale. Would you like to buy it?");
+				if (buying == true){
+					price = prompt("How much would you like to pay for each hall pass?(Don't lowball to much or you might lose your chance)");
+					if (money > (price*1)){
+						localStorage.setItem("hallpass",1);
+						hallpass = 0;
+						localStorage.setItem("Buyhallpass",0);
+						money = money - price;
+						localStorage.setItem('balance',money);
+						balance();
+						document.getElementById('hallpass').innerHTML = "Hallpass: " + localStorage.getItem("apple");
+
+					}else{
+						alert("You are poor. Try later!");
+					}
+				}else{
+					alert("Maybe next time!");
+				}	
+			}	
+		}
+		
+		function lunchlady(){
+			apple = localStorage.getItem("Buyapple");
+			money = localStorage.getItem("balance"); 
+			if(apple == 0){
+				alert("The lunch lady ran out of apples.");
+			}else{
+				buying = prompt("The lunch lady has " + apple + " apples for sale. How many would you like to buy?");
+				if (buying != 0){
+					price = prompt("How much would you like to pay for each apple?(Don't lowball to much or you might lose your chance)");
+					if (money > (price*buying)){
+						if(localStorage.soda == null){
+							localStorage.setItem("apple",buying);
+
+						}else{
+							localStorage.setItem("apple",parseInt(localStorage.apple) + parseInt(buying));
+
+						}
+						apple = apple - buying;
+						localStorage.setItem("Buyapple",apple);
+						money = money - price;
+						localStorage.setItem('balance',money);
+						balance();
+						document.getElementById('apple').innerHTML = "Apples: " + localStorage.getItem("apple");
+					}else{
+						alert("You are poor. Try later!");
+					}
+				}else{
+					alert("Maybe next time!");
+				}	
+			}
+		}
+		
+		function nextpage(){
+			document.location.href = 'Hallway.html'
+
+		}
+		
+	
+	</script>
+</head>
+
+<body id ="mycolor" onload = "start()">
+	<div id ='balance'></div>
+	<div id ='soda'></div>
+	<div id ='hallpass'></div>
+	<div id ='apple'></div>
+	<h1 id="prompt"> Your class goes to the cafeteria.</h1>
+	<h1 id="prompt"> You can visit someone, who do you visit?</h1>
+	<center>
+		<div>
+			<div>
+				<img src ="classmate.png" onclick="classmate()" style="width:100px;height:100px;"></img>
+				Your classmate?
+			</div>
+			<div>
+				<img src ="teacher.png" onclick="teacher()" style="width:100px;height:100px;"></img>
+				Your Teacher?
+			</div>
+			<div>
+				<img src ="lunchlady.png" onclick="lunchlady()" style="width:100px;height:100px;"></img>
+				The Lunch Lady?
+			</div>
+		</div>
+		
+		<button type='button' onclick="nextpage()" style = "width:100px; height: 50;margin:auto;">Click to continue your day!</button>
+
+	</center>
+
+</body>

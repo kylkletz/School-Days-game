@@ -1,0 +1,77 @@
+<!--
+Image citations
+money: rg1024  URL:https://openclipart.org/detail/31207/money-bag
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			balance();
+		}
+
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		
+		function teacher(){
+			alert("Your teacher becomes hysterical and sends you to the principal's office");
+			document.location.href = "Principal.html";
+		}
+		function steal(){
+			alert("Your friend catches you, but offers to share with you. ");
+			document.location.href = "Decisions.html";
+		}
+		function classmate(){
+			alert("You buy the required art supplies from your classmate for $3.");
+			localStorage.setItem("balance",parseInt(localStorage.getItem("balance")) -3);
+			document.location.href = "Decisions.html";
+		}
+
+	</script>
+
+
+
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+
+	<h2 id = "prompt">
+		<div>
+			You made it to Art class somehow
+		</div>
+	
+		<div>
+			The teacher says to start on your next project
+		</div>
+	</h2>
+	<h1 id= "prompt">
+		<div>
+			OH NO! You forgot your Art supplies...
+		</div>
+		<div>
+			What are you going to do...
+		</div>
+		<div>
+			<img src ="teacher.png" onclick="teacher()" style="width:100px;height:100px;"></img>
+			Tell the Art Teacher?
+		</div>
+		<div>
+			<img src ="classmate.png" onclick="steal()" style="width:100px;height:100px;"></img>
+			Steal some from your friend?
+		</div>
+		<div>
+			<img src ="money.png" onclick="classmate()" style="width:100px;height:100px;"></img>
+			Buy some supplies from your classmate for $4?	
+		</div>
+		
+		<div id = "outcome"></div>
+	</h1>
+</body>

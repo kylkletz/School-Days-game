@@ -1,0 +1,93 @@
+<!--
+Image citations
+classroom: Ilex  URL:https://openclipart.org/detail/238442/klassenraum
+hall: Gerald_G  URL:https://openclipart.org/detail/8937/school-hallway
+note: Zeimusu  URL:https://openclipart.org/detail/3042/thumbtack-note-important
+-->
+
+
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+  	<title>Adventurer Game</title>
+	<link rel="stylesheet" type="text/css" href="format.css">
+	
+	
+	<script type = "text/javascript">
+		function start(){
+			loadinv();
+			balance();
+		}
+		function balance(){
+			document.getElementById("balance").innerHTML = "Money $" + localStorage.getItem("balance");
+		}
+		function loadinv(){
+			if(localStorage.getItem('apple') != null){
+				document.getElementById('apple').innerHTML = "Apples: " + localStorage.getItem("apple");
+			}
+			if(localStorage.getItem('hallpass') != null){
+				document.getElementById('hallpass').innerHTML = "Hallpasses: " + localStorage.getItem("hallpass");
+			}
+			if(localStorage.getItem('soda') != null){
+				document.getElementById('soda').innerHTML = "Sodas: " + localStorage.getItem("soda");
+			}
+		}
+		
+		function classroom(){
+			document.location.href = 'Classroom.html';
+		}
+		
+		function hall(){
+			document.location.href = 'Hallmonitor.html';
+		}
+		
+		function note(){
+			if(localStorage.getItem('soda') == null){
+				alert("Your friend wants the money you owe him. Lose $2");
+				localStorage.setItem("balance",localStorage.getItem("balance")-2);
+				balance();
+			}else{
+				localStorage.setItem("note",1);
+				alert("You pass a note to a friend successfully");
+			}
+			document.location.href = "Classroom.html";
+		}
+		
+	</script>
+	
+	
+<body id='mycolor' onload="start()">
+	<div id = 'balance'> </div>
+	<div id = 'apple'> </div>
+
+	<div id = 'hallpass'></div>
+	<div id = 'soda'></div>
+	
+	<h1 id="prompt">
+		<div> You are walking back to class now.</div>
+		<div> What do you want to do? </div>
+		
+		
+		<center>
+			<div>
+				<div>
+					<img src ="classroom.png" onclick="classroom()" style="width:100px;height:100px;"></img>
+					Go back to class?
+				</div>
+				<div>
+					<img src ="hall.png" onclick="hall()" style="width:100px;height:100px;"></img>
+					Hide in the hall until class starts?
+				</div>
+				<div>
+					<img src ="note.png" onclick="note()" style="width:100px;height:100px;"></img>
+					Pass a note to your classmate?
+				</div>
+			</div>
+
+		</center>
+	
+	</h1>
+	
+</body>
